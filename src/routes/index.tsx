@@ -10,7 +10,7 @@ import {
   Sparkles,
   TrendingUp,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { PageHeader } from "@/components/app/PageHeader";
 import { TaskRow } from "@/components/app/TaskRow";
@@ -85,8 +85,11 @@ function Dashboard() {
     }
   }
 
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+  const [greeting, setGreeting] = useState("Welcome back");
+  useEffect(() => {
+    const hour = new Date().getHours();
+    setGreeting(hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening");
+  }, []);
 
   return (
     <>
