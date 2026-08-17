@@ -108,9 +108,9 @@ function EmailsPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="surface-card space-y-4 p-5">
           <Tabs value={mode} onValueChange={(v) => setMode(v as Mode)}>
-            <TabsList className="flex w-full flex-wrap justify-start gap-1 bg-secondary">
+            <TabsList className="grid h-auto w-full grid-cols-2 gap-1 bg-secondary sm:grid-cols-3">
               {MODES.map((m) => (
-                <TabsTrigger key={m.value} value={m.value} className="text-xs">
+                <TabsTrigger key={m.value} value={m.value} className="text-xs whitespace-nowrap">
                   {m.label}
                 </TabsTrigger>
               ))}
