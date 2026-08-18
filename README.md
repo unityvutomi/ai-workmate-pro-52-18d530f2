@@ -1,172 +1,57 @@
-# AI Work Companion
-
-Build Prompt: AI Workplace Productivity Assistant
-
-Create a modern, responsive, professional web application called “AI Workplace Productivity Assistant” that helps professionals save time, organize their work, and automate everyday workplace tasks using artificial intelligence.
-
-Core Features
-
-1. Smart Emails Generator
-
-Create an AI-powered email assistant that allows users to:
-
-Generate professional emails from simple instructions.
-
-Rewrite emails to sound more professional, friendly, concise, or persuasive.
-
-Generate email subject lines.
-
-Adjust tone and writing style.
-
-Fix grammar and spelling.
-
-Summarize long email conversations.
-
-Provide Copy, Edit, and Regenerate actions.
-
-Example:
-User enters: “Write an email to my manager requesting two days off next week.”
-The AI generates a polished professional email.
-
-2. Meeting Notes Summarizer
-
-Create an AI meeting assistant where users can:
-
-Paste or upload meeting transcripts and notes.
-
-Automatically summarize meetings.
-
-Identify key discussion points.
-
-Extract decisions and important information.
-
-Detect action items.
-
-Identify assigned team members and deadlines.
-
-Generate a short executive summary.
-
-Display results in organized sections such as Summary, Key Points, Decisions, Action Items, and Follow-ups.
-
-3. AI Task Planner
-
-Create an intelligent task-management system that helps users:
-
-Create tasks using natural language.
-
-Automatically break large projects into smaller tasks.
-
-Prioritize tasks based on urgency and importance.
-
-Suggest deadlines.
-
-Organize tasks by project or category.
-
-Track progress.
-
-Display tasks in Today, Upcoming, In Progress, and Completed sections.
-
-Provide AI-generated productivity suggestions.
-
-Dashboard
-
-Design a clean AI-powered dashboard containing:
-
-Welcome message.
-
-Productivity score.
-
-Today's tasks.
-
-Upcoming deadlines.
-
-Recent emails generated.
-
-Recent meeting summaries.
-
-Quick-action buttons for Generate Email, Summarize Meeting, and Plan Tasks.
-
-AI productivity insights.
-
-User Interface
-
-Use a modern SaaS-style design with:
-
-Responsive desktop, tablet, and mobile layouts.
-
-Clean typography.
-
-Professional navigation sidebar.
-
-Modern cards and dashboard widgets.
-
-Subtle animations and smooth transitions.
-
-Accessible buttons and form controls.
-
-Light and dark mode.
-
-Clear visual hierarchy.
-
-AI-inspired but professional visual design.
-
-Empty states, loading states, success messages, and error handling.
-
-Navigation
-
-Include:
-
-Dashboard
-
-Smart Emails
-
-Meeting Summarizer
-
-AI Task Planner
-
-My Tasks
-
-Productivity Insights
-
-History
-
-Settings
-
-AI Assistant
-
-Include a floating AI Assistant button that opens a conversational interface where users can ask questions such as:
-
-“What should I focus on today?”
-
-“Turn these meeting notes into tasks.”
-
-“Make this email more professional.”
-
-“Help me plan my week.”
-
-The AI should provide concise, useful workplace recommendations.
-
-Technical Requirements
-
-Build the application with a scalable component-based architecture and reusable UI components. Make the interface fast, accessible, mobile-friendly, and easy to extend with real AI APIs, authentication, databases, notifications, and integrations such as email and calendar services.
-
-The final product should feel like a premium workplace productivity SaaS platform—simple enough for everyday professionals while powerful enough for teams and businesses.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://ai-workmate-pro-52.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/3e3b0e8f-da54-494d-a7cd-ce75b7ac87c8).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+# AI Workplace Productivity Assistant
+
+A modern, responsive SaaS-style web app that helps professionals save time, organise their work,
+and automate everyday workplace tasks with AI.
+
+Live app: https://ai-workmate-pro-52.lovable.app
+
+## Features
+
+- **Dashboard** — productivity score, open tasks, upcoming deadlines and recent AI output at a glance.
+- **Smart Emails** — generate, rewrite, fix grammar, propose subject lines, and summarise email threads
+  with tone and length controls.
+- **Meeting Summarizer** — turns messy notes or transcripts into an executive summary, key points,
+  decisions and owned action items (convertible into tasks in one click).
+- **AI Task Planner** — describe a goal in plain language and get a prioritised, dated task breakdown.
+- **Tasks** — board grouped into Today, Upcoming, In progress and Completed.
+- **Insights** — workload and priority charts plus AI coaching based on your actual data.
+- **History** — local archive of every generated email and meeting summary.
+- **Settings** — profile, assistant preferences, data export and reset.
+- **Floating AI assistant** — context-aware chat available on every page.
+- **Light / dark mode** throughout.
+
+## Tech stack
+
+- TanStack Start + TanStack Router (file-based routing, server functions)
+- React 19 + TypeScript
+- Tailwind CSS v4 with an OKLCH semantic token design system
+- shadcn/ui + Radix primitives, lucide icons, Recharts
+- Lovable AI Gateway (`google/gemini-3.6-flash`) for all AI features
+- Vite 7 build, deployed to an edge runtime
+
+## Project structure
+
+```text
+src/
+  routes/            file-based routes (/, /emails, /meetings, /planner,
+                     /tasks, /insights, /history, /settings) + __root.tsx shell
+  components/app/    AppShell, PageHeader, AssistantWidget, TaskRow, Markdown, theme
+  components/ui/     shadcn/ui primitives
+  lib/
+    ai.functions.ts  server functions: composeEmail, summarizeMeeting, planTasks, assistantChat
+    ai.server.ts     AI Gateway client, error handling, JSON parsing
+    store.tsx        app state (tasks, emails, meetings) persisted to localStorage
+  styles.css         design tokens and global styles
+```
+
+## Data & privacy
+
+Tasks, drafted emails and meeting summaries are stored in the browser's `localStorage` — nothing is
+persisted server-side. Prompts are sent to the AI Gateway only when you trigger a generation.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requires Node.js 20+ and npm.
 
 ```sh
 git clone <this-repository-url>
@@ -174,3 +59,23 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+The app runs at http://localhost:8080.
+
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | start the dev server |
+| `npm run build` | production build |
+| `npm run preview` | preview the production build |
+| `npm run lint` | lint the codebase |
+| `npm run format` | format with Prettier |
+
+### Environment
+
+AI calls require `LOVABLE_API_KEY` in the server environment. On Lovable this is injected
+automatically; running locally outside Lovable, set it in a `.env` file.
+
+## Deployment
+
+Open the project in [Lovable](https://lovable.dev) and hit Publish. The repository stays in two-way
+sync, so changes pushed to GitHub appear in Lovable and vice versa.
